@@ -4,6 +4,7 @@ import SwiftUI
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .tint(Waywatch.Palette.primary)
         }
     }
 }
