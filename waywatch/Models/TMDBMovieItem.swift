@@ -1,43 +1,35 @@
 //
-//  TMDBAnswerItem.swift
+//  TMDBMovieItem.swift
 //  waywatch
 //
-//  Revieved answer from TMDB, contains both movie and TV-shows fields
+//  Revieved answer for movie from TMDB, contains movie fields only
 //
 
-struct TMDBAnswerItem: Decodable {
+struct TMDBMovieItem: Decodable {
+    /// adult content
     let adult: Bool
-    
-    /// can be null
     let backdropPath: String?
     let genreIds: [Int]
     let id: Int
     
-    /// TV shows only
-    let originCountry: [String]?
+    /// Displayed name
+    let title: String
     
-    /// Movies only
-    let title: String?
+    /// Local
     let originalLanguage: String
+    let originalTitle: String
     
-    /// Shows
-    let originalName: String?
-    
-    /// Movies
-    let originalTitle: String?
+    /// Movie description
     let overview: String
-    let popularity: Double
-    
-    /// can be null
     let posterPath: String?
     
-    /// Movies
-    let releaseDate: String?
-    
-    /// Shows
-    let firstAirDate: String?
-    let softCore: Bool
+    /// formate `2023-09-29`
+    let releaseDate: String
     
     let voteAverage: Double
     let voteCount: Int
+}
+
+extension TMDBMovieItem {
+    static let sample = TMDBMovieItem(adult: false, backdropPath: "/", genreIds: [1, 67], id: 1, title: "JewJewtsu Kaisen", originalLanguage: "jp", originalTitle: "I don't have japanese keyboard", overview: "An anime", posterPath: "wayoni.com/place/prague", releaseDate: "06-07-1967", voteAverage: 6.7, voteCount: 67)
 }
