@@ -62,6 +62,40 @@ enum Waywatch {
         static let rating = Color(light: 0xD49A00, dark: 0xFFC94D)
     }
     
+    // MARK: - Spacing
+    
+    /// 4pt step, named by size rather than purpose: the same gap shows up both
+    /// between cards and inside a row.
+    enum Space {
+        static let x1: CGFloat = 4
+        static let x2: CGFloat = 8
+        static let x3: CGFloat = 12
+        static let x4: CGFloat = 16
+        static let x5: CGFloat = 20
+        static let x6: CGFloat = 24
+        static let x7: CGFloat = 32
+        static let x8: CGFloat = 40
+    }
+    
+    // MARK: - Radii
+    
+    enum Radius {
+        /// badges
+        static let sm: CGFloat = 8
+        
+        /// buttons and inputs
+        static let md: CGFloat = 12
+        
+        /// cards
+        static let lg: CGFloat = 16
+        
+        /// sheets
+        static let xl: CGFloat = 24
+    }
+    
+    /// The single margin between content and the screen edge.
+    static let gutter: CGFloat = 16
+    
 }
 
 // MARK: — Hex from the web without converting by hand
