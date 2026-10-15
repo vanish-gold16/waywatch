@@ -31,5 +31,5 @@ struct TMDBShowItem: Decodable {
 }
 
 extension TMDBShowItem {
-    static let sample = TMDBShowItem(adult: true, backdropPath: nil, genreIds: [69], id: 69, originCountry: ["JP"], originalName: "Okaasan No Hentai", overview: "Strange video tape created in the 90th", posterPath: nil, firstAirDate: "06-07-1996", name: "I found mother's hentai", voteAverage: 9.9, voteCount: 100000)
+    static let sample = TMDBShowItem(adult: true, backdropPath: nil, genreIds: [69], id: 69, originCountry: ["JP"], originalName: "Okaasan No Hentai", overview: "Strange video tape created in the 90th", posterPath: nil, firstAirDate: "1996-06-07", name: "I found mother's hentai", voteAverage: 9.9, voteCount: 100000)
 }
