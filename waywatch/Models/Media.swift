@@ -6,5 +6,5 @@
 //
 
 enum MediaType {
-    case movie, show, anime, manga
+    case movie, show
 }
