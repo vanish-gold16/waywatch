@@ -5,7 +5,6 @@
 //  A service for handling TMDB API responses
 //
 import Foundation
-import Playgrounds
 
 struct TMDBClient {
 
@@ -76,38 +75,3 @@ struct TMDBClient {
     }
     
 }
-
-//
-//#Playground {
-//    let json = #"""
-//        {
-//            "page": 1,
-//            "results": [
-//                {
-//                    "adult": false,
-//                    "backdrop_path": "/",
-//                    "genre_ids": [1, 67],
-//                    "id": 1,
-//                    "title": "JewJewtsu Kaisen",
-//                    "original_language": "ja",
-//                    "original_title": "I don't have japanese keyboard",
-//                    "overview": "An anime",
-//                    "poster_path": "wayoni.com/place/prague",
-//                    "release_date": "1067-06-07",
-//                    "vote_average": 6.7,
-//                    "vote_count": 67
-//                }
-//            ],
-//            "total_pages": 1,
-//            "total_results": 1
-//        }
-//        """#
-//
-//    let client = TMDBClient()
-//    do {
-//        let movies = try client.parseMovieResponse(from: Data(json.utf8))
-//        print(movies.map(\.name))
-//    } catch {
-//        print(error)
-//    }
-//}
