@@ -6,5 +6,17 @@
 //
 
 enum MediaType {
-    case movie, show
+    case movie
+    case show
+}
+
+extension MediaType {
+    var title: String {
+        switch self {
+        case .movie:
+            return "film"
+        case .show:
+            return "show"
+        }
+    }
 }
