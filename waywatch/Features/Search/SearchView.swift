@@ -23,8 +23,10 @@ struct SearchView: View {
                     if founds.isEmpty {
                         ContentUnavailableView.search(text: query)
                     } else {
-                        ForEach(founds, id: \.id) { found in
-                            SearchResultRow(result: found)
+                        ScrollView {
+                            ForEach(founds, id: \.id) { found in
+                                SearchResultRow(result: found)
+                            }
                         }
                     }
                 case .failed(let message):
@@ -44,6 +46,7 @@ struct SearchView: View {
                     }
                 }
             }
+            
         }
     }
     
