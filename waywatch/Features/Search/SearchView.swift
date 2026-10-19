@@ -13,7 +13,7 @@ struct SearchView: View {
     var body: some View {
         NavigationStack {
             List(found, id: \.name) { element in
-                Text(element.name)
+                SearchResultRow(result: element)
             }
             .navigationTitle("Search")
             .searchable(text: $query)

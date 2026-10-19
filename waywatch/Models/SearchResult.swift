@@ -16,3 +16,11 @@ struct SearchResult {
     /// TMDB genre IDs
     let tmdbGenre: [Int]?
 }
+
+extension SearchResult {
+    static let samples = [
+        SearchResult(id: 1, type: .movie, name: "Fight Club", poster: nil, description: "My favourite movie", tmdbGenre: [1, 2, 3]),
+        SearchResult(id: 2, type: .movie, name: "Amelie", poster: nil, description: "Vibeeeee", tmdbGenre: [2, 4]),
+        SearchResult(id: 3, type: .show, name: "Breaking Bad", poster: nil, description: "Absolute cinema", tmdbGenre: [1, 3, 8])
+    ]
+}
