@@ -1,5 +1,5 @@
 //
-//  MovieSearchView.swift
+//  SearchView.swift
 //  waywatch
 //
 //  Represents element of found movies with search bar
@@ -12,7 +12,7 @@ struct SearchView: View {
     
     var body: some View {
         NavigationStack {
-            List(found, id: \.name) { element in
+            List(found, id: \.id) { element in
                 SearchResultRow(result: element)
             }
             .navigationTitle("Search")

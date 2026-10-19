@@ -20,19 +20,15 @@ struct SearchResultRow: View {
 }
 
 #Preview("Light") {
-    ForEach(SearchResult.samples, id: \.name) { sample in
-        VStack {
-            SearchResultRow(result: sample)
-        }
+    ForEach(SearchResult.samples, id: \.id) { sample in
+        SearchResultRow(result: sample)
     }
     .preferredColorScheme(.light)
 }
 
 #Preview("Dark") {
-    ForEach(SearchResult.samples, id: \.name) { sample in
-        VStack {
-            SearchResultRow(result: sample)
-        }
+    ForEach(SearchResult.samples, id: \.id) { sample in
+        SearchResultRow(result: sample)
     }
     .preferredColorScheme(.dark)
 }
