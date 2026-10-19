@@ -9,7 +9,6 @@ import SwiftUI
 struct SearchView: View {
     @State private var query = ""
     @State private var state: SearchState = .idle
-    @State private var found: [SearchResult] = []
     
     var body: some View {
         NavigationStack {
@@ -24,9 +23,12 @@ struct SearchView: View {
                         ContentUnavailableView.search(text: query)
                     } else {
                         ScrollView {
-                            ForEach(founds, id: \.id) { found in
-                                SearchResultRow(result: found)
+                            LazyVStack(spacing: Waywatch.Space.x3) {
+                                ForEach(founds, id: \.id) { found in
+                                    SearchResultRow(result: found)
+                                }
                             }
+                            .padding(.horizontal, Waywatch.Space.x4)
                         }
                     }
                 case .failed(let message):
@@ -39,7 +41,8 @@ struct SearchView: View {
             .onSubmit(of: .search) {
                 Task {
                     do {
-                        found = try await TMDBClient().search(query, type: .movie)
+                        state = .loading
+                        let found = try await TMDBClient().search(query, type: .movie)
                         state = .loaded(found)
                     } catch {
                         state = .failed(error.localizedDescription)

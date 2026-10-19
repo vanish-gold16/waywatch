@@ -56,7 +56,7 @@ struct SearchResultRow: View {
             Text(result.name)
                 .font(.headline)
                 .lineLimit(1)
-                .foregroundStyle(P.textSecondary)
+                .foregroundStyle(P.textPrimary)
             metaRow
             Text(result.description)
                 .font(.footnote)
