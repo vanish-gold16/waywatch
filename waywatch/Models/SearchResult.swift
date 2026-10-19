@@ -12,6 +12,8 @@ struct SearchResult {
     let name: String
     let poster: URL?
     let description: String
+    let year: Int?
+    let rating: Double
     
     /// TMDB genre IDs
     let tmdbGenre: [Int]?
