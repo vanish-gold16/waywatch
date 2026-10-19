@@ -7,6 +7,6 @@ import SwiftData
             ContentView()
                 .tint(Waywatch.Palette.primary)
         }
-        .modelContainer(for: SavedMedia.self)
+        .modelContainer(for: Saved.self)
     }
 }

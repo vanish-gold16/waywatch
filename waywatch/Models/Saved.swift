@@ -1,5 +1,5 @@
 //
-//  SavedMedia.swift
+//  Saved.swift
 //  waywatch
 //
 //  Created by Vanya on 19.10.2026.
@@ -8,7 +8,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class SavedMedia {
+final class Saved {
     var name: String
     var chipNumber: Int
     var addedAt: Date
