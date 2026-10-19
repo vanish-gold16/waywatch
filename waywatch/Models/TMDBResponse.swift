@@ -17,3 +17,7 @@ struct TMDBResponse<Item: Decodable>: Decodable {
     let totalPages: Int
     let totalResults: Int
 }
+
+enum TMDBResponseError: Error {
+    case badStatus(Int)
+}

@@ -24,7 +24,7 @@ struct TMDBClient {
         guard let base = Self.commonBaseURL else { throw URLError(.badURL) }
         
         // Full URL for movie search; TMDB expects the search term in `query`
-        let url = base.appending(path: type == .movie ? "movie" : "show")
+        let url = base.appending(path: type == .movie ? "movie" : "tv")
             .appending(queryItems: [URLQueryItem(name: "query", value: name)])
         
         // Building URL request
@@ -34,7 +34,15 @@ struct TMDBClient {
         request.setValue("Bearer \(Secrets.tmdbToken)", forHTTPHeaderField: "Authorization")
         
         // Send async request
-        let (data, error) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        // Guarding http response not to have any errors
+        guard let http = response as? HTTPURLResponse else {
+            throw URLError(.badServerResponse)
+        }
+        guard http.statusCode == 200 else {
+            throw TMDBResponseError.badStatus(http.statusCode)
+        }
 
         return try parseResponse(from: data, type: type)
 
