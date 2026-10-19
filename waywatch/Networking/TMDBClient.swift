@@ -29,6 +29,7 @@ struct TMDBClient {
 
         var all: [SearchResult] = []
 
+        // Mix movies' and shows' results
         for i in 0..<max(movieResults.count, showResults.count) {
             if i < movieResults.count { all.append(movieResults[i]) }
             if i < showResults.count { all.append(showResults[i]) }

@@ -6,24 +6,24 @@
 //
 
 struct TMDBMovieItem: Decodable {
-    // adult content
+    /// adult content
     let adult: Bool
     let backdropPath: String?
     let genreIds: [Int]
     let id: Int
     
-    // Displayed name
+    /// Displayed name
     let title: String
     
-    // Local
+    /// Local
     let originalLanguage: String
     let originalTitle: String
     
-    // Movie description
+    /// Movie description
     let overview: String
     let posterPath: String?
     
-    // formate `2023-09-29`
+    /// formate `2023-09-29`
     let releaseDate: String
     
     let voteAverage: Double
