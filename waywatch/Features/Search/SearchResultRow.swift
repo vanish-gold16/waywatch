@@ -19,7 +19,7 @@ struct SearchResultRow: View {
                 .foregroundStyle(P.textSecondary)
             Spacer()
             addButton
-                .frame(maxHeight: .infinity) // центрирует кнопку по вертикали
+                .frame(maxHeight: .infinity) /// centers button at vertical
         }
         .padding(Waywatch.Space.x3)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -30,7 +30,7 @@ struct SearchResultRow: View {
         }
     }
     
-    // poster eleemnt as an AsyncImage or plain image
+    /// poster eleemnt as an AsyncImage or plain image
     @ViewBuilder
     private var poster: some View {
         AsyncImage(url: result.poster) { image in
@@ -49,7 +49,7 @@ struct SearchResultRow: View {
         .clipShape(.rect(cornerRadius: Waywatch.Radius.sm))
     }
     
-    // Main body with whole info about media
+    /// Main body with whole info about media
     @ViewBuilder
     private var info: some View {
         VStack(alignment: .leading, spacing: Waywatch.Space.x1) {
@@ -64,6 +64,7 @@ struct SearchResultRow: View {
         }
     }
     
+    /// additional info about media
     @ViewBuilder
     private var metaRow: some View {
         HStack {
@@ -96,7 +97,7 @@ struct SearchResultRow: View {
 
 #Preview("Light") {
     ScrollView {
-        ForEach(SearchResult.samples, id: \.id) { sample in
+        ForEach(SearchResult.samples) { sample in
             VStack(spacing: Waywatch.Space.x3) {
                 SearchResultRow(result: sample)
             }
@@ -107,7 +108,7 @@ struct SearchResultRow: View {
 
 #Preview("Dark") {
     ScrollView {
-        ForEach(SearchResult.samples, id: \.id) { sample in
+        ForEach(SearchResult.samples) { sample in
             SearchResultRow(result: sample)
         }
     }

@@ -24,7 +24,7 @@ struct SearchView: View {
                     } else {
                         ScrollView {
                             LazyVStack(spacing: Waywatch.Space.x3) {
-                                ForEach(founds, id: \.id) { found in
+                                ForEach(founds) { found in
                                     SearchResultRow(result: found)
                                 }
                             }
