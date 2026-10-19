@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 @main struct MyApp: App {
     var body: some Scene {
@@ -6,5 +7,6 @@ import SwiftUI
             ContentView()
                 .tint(Waywatch.Palette.primary)
         }
+        .modelContainer(for: SavedMedia.self)
     }
 }
