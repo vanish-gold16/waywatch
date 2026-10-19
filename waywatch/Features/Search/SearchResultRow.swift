@@ -19,7 +19,7 @@ struct SearchResultRow: View {
                 .foregroundStyle(P.textSecondary)
             Spacer()
             addButton
-                .frame(maxHeight: .infinity) /// centers button at vertical
+                .frame(maxHeight: .infinity) // centers button at vertical
         }
         .padding(Waywatch.Space.x3)
         .frame(maxWidth: .infinity, alignment: .leading)

@@ -16,11 +16,11 @@ struct SearchResult: Identifiable {
     let year: Int?
     let rating: Double?
     
-    /// TMDB genre IDs
+    // TMDB genre IDs
     let tmdbGenre: [Int]?
     
-    /// computed property is here not to mistaken movie and show if they have the same id (very possible with TMDB)
-    /// now in formate "movie-125"/"show-125"
+    // computed property is here not to mistaken movie and show if they have the same id (very possible with TMDB)
+    // now in formate "movie-125"/"show-125"
     var id: String { "\(type)-\(tmdbId)" }
 }
 

@@ -42,7 +42,7 @@ struct SearchView: View {
                 Task {
                     do {
                         state = .loading
-                        let found = try await TMDBClient().search(query, type: .movie)
+                        let found = try await TMDBClient().searchAll(name: query)
                         state = .loaded(found)
                     } catch {
                         state = .failed(error.localizedDescription)

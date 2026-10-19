@@ -20,23 +20,40 @@ struct TMDBClient {
         return base.appending(path: path)
     }
     
+    func searchAll(name: String) async throws -> [SearchResult] {
+        async let movies = search(name, type: .movie)
+        async let shows = search(name, type: .show)
+        
+        // Read each `async let` once, with `try`, then interleave the results
+        let (movieResults, showResults) = try await (movies, shows)
+
+        var all: [SearchResult] = []
+
+        for i in 0..<max(movieResults.count, showResults.count) {
+            if i < movieResults.count { all.append(movieResults[i]) }
+            if i < showResults.count { all.append(showResults[i]) }
+        }
+        
+        return all
+    }
+    
     func search(_ name: String, type: MediaType) async throws -> [SearchResult] {
         guard let base = Self.commonBaseURL else { throw URLError(.badURL) }
         
-        /// Full URL for movie search; TMDB expects the search term in `query`
+        // Full URL for movie search; TMDB expects the search term in `query`
         let url = base.appending(path: type == .movie ? "movie" : "tv")
             .appending(queryItems: [URLQueryItem(name: "query", value: name)])
         
-        /// Building URL request
+        // Building URL request
         var request = URLRequest(url: url)
         
-        /// Setting HTTP authorization Bearer token
+        // Setting HTTP authorization Bearer token
         request.setValue("Bearer \(Secrets.tmdbToken)", forHTTPHeaderField: "Authorization")
         
-        /// Send async request
+        // Send async request
         let (data, response) = try await URLSession.shared.data(for: request)
         
-        /// Guarding http response not to have any errors
+        // Guarding http response not to have any errors
         guard let http = response as? HTTPURLResponse else {
             throw URLError(.badServerResponse)
         }
@@ -54,7 +71,7 @@ struct TMDBClient {
         // Create JSON decoder
         let decoder = JSONDecoder()
         
-        /// Set decoding strategy to convert "the_word" to "theWord"
+        // Set decoding strategy to convert "the_word" to "theWord"
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         switch type {

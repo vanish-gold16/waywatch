@@ -6,24 +6,24 @@
 //
 
 struct TMDBShowItem: Decodable {
-    /// adult content
+    // adult content
     let adult: Bool
     let backdropPath: String?
     let genreIds: [Int]
     let id: Int
     
-    /// Local
+    // Local
     let originCountry: [String]
     let originalName: String
     
-    /// Show description
+    // Show description
     let overview: String
     let posterPath: String?
     
-    /// formate `2023-09-29`
+    // formate `2023-09-29`
     let firstAirDate: String
     
-    /// Displayed name
+    // Displayed name
     let name: String
     
     let voteAverage: Double
