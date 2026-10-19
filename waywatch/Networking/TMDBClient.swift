@@ -61,12 +61,12 @@ struct TMDBClient {
         case .movie:
             let response = try decoder.decode(TMDBResponse<TMDBMovieItem>.self, from: data)
             return response.results.map { result in
-                SearchResult(id: result.id, type: .movie, name: result.title, poster: posterURL(for: result.posterPath), description: result.overview, year: toYear(result.releaseDate), rating: result.voteAverage, tmdbGenre: result.genreIds)
+                SearchResult(id: result.id, type: .movie, name: result.title, poster: posterURL(for: result.posterPath), description: result.overview, year: toYear(result.releaseDate), rating: result.voteAverage == 0 ? nil : result.voteAverage, tmdbGenre: result.genreIds)
             }
         case .show:
             let response = try decoder.decode(TMDBResponse<TMDBShowItem>.self, from: data)
             return response.results.map { result in
-                SearchResult(id: result.id, type: .show, name: result.name, poster: posterURL(for: result.posterPath), description: result.overview, year: toYear(result.firstAirDate), rating: result.voteAverage, tmdbGenre: result.genreIds)
+                SearchResult(id: result.id, type: .show, name: result.name, poster: posterURL(for: result.posterPath), description: result.overview, year: toYear(result.firstAirDate), rating: result.voteAverage == 0 ? nil : result.voteAverage, tmdbGenre: result.genreIds)
             }
         }
     }
