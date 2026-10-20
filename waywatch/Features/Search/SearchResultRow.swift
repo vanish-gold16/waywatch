@@ -10,6 +10,9 @@ struct SearchResultRow: View {
     
     let result: SearchResult
     
+    /// called when the user taps the add button
+    let onAdd: () -> Void
+    
     private typealias P = Waywatch.Palette
     
     var body: some View {
@@ -84,7 +87,7 @@ struct SearchResultRow: View {
     @ViewBuilder
     private var addButton: some View {
         Button {
-            
+            onAdd()
         } label: {
             Image(systemName: "plus")
                 .foregroundStyle(P.onPrimary)
@@ -99,7 +102,7 @@ struct SearchResultRow: View {
     ScrollView {
         ForEach(SearchResult.samples) { sample in
             VStack(spacing: Waywatch.Space.x3) {
-                SearchResultRow(result: sample)
+                SearchResultRow(result: sample, onAdd: {})
             }
         }
     }
@@ -109,7 +112,7 @@ struct SearchResultRow: View {
 #Preview("Dark") {
     ScrollView {
         ForEach(SearchResult.samples) { sample in
-            SearchResultRow(result: sample)
+            SearchResultRow(result: sample, onAdd: {})
         }
     }
     .preferredColorScheme(.dark)

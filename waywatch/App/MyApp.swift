@@ -7,6 +7,6 @@ import SwiftData
             ContentView()
                 .tint(Waywatch.Palette.primary)
         }
-        .modelContainer(for: Saved.self)
+        .modelContainer(for: WatchlistItem.self)
     }
 }

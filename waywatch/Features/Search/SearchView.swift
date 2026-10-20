@@ -10,6 +10,8 @@ struct SearchView: View {
     @State private var query = ""
     @State private var state: SearchState = .idle
     
+    @State private var adding: SearchResult?
+    
     var body: some View {
         NavigationStack {
             Group {
@@ -25,7 +27,9 @@ struct SearchView: View {
                         ScrollView {
                             LazyVStack(spacing: Waywatch.Space.x3) {
                                 ForEach(founds) { found in
-                                    SearchResultRow(result: found)
+                                    SearchResultRow(result: found) {
+                                        adding = found
+                                    }
                                 }
                             }
                             .padding(.horizontal, Waywatch.Space.x4)
@@ -49,7 +53,9 @@ struct SearchView: View {
                     }
                 }
             }
-            
+            .sheet(item: $adding) { result in
+                AddToLibrarySheet(result: result)
+            }
         }
     }
     

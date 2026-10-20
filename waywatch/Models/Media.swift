@@ -5,7 +5,7 @@
 //  Created by Vanya on 14.10.2026.
 //
 
-enum MediaType {
+enum MediaType: Codable {
     case movie
     case show
 }

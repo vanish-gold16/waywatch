@@ -1,13 +1,13 @@
 //
-//  SavedRowView.swift
+//  AddToLibrarySheet.swift
 //  waywatch
 //
-//  Created by Vanya on 19.10.2026.
+//  A modal for adding media to the library
 //
 import SwiftData
 import SwiftUI
 
-struct SaveRowView: View {
+struct AddToLibrarySheet: View {
     
     @Environment(\.modelContext) private var modelContext
     
@@ -21,13 +21,10 @@ struct SaveRowView: View {
                 poster
                 info
                     .foregroundStyle(P.textSecondary)
-                Spacer()
-
             }
         }
         .padding(Waywatch.Space.x3)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(P.surface, in: .rect(cornerRadius: Waywatch.Radius.lg))
     }
     
     @ViewBuilder
@@ -84,14 +81,14 @@ struct SaveRowView: View {
 
 #Preview("Light") {
     ScrollView {
-        SaveRowView(result: SearchResult.samples.first!)
+        AddToLibrarySheet(result: SearchResult.samples.first!)
     }
     .preferredColorScheme(.light)
 }
 
 #Preview("Dark") {
     ScrollView {
-        SaveRowView(result: SearchResult.samples.first!)
+        AddToLibrarySheet(result: SearchResult.samples.first!)
     }
     .preferredColorScheme(.dark)
 }
