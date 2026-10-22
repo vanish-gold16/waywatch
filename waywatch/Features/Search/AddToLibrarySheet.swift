@@ -26,7 +26,7 @@ struct AddToLibrarySheet: View {
                 }
                 HStack {
                     remove
-                    if item.addedAt != nil { status }
+                    status
                 }
             }
             .padding(Waywatch.Space.x3)
@@ -106,7 +106,8 @@ struct AddToLibrarySheet: View {
     @ViewBuilder
     private var remove: some View {
         Button {
-            
+            modelContext.delete(item)
+            dismiss()
         } label: {
             Image(systemName: "trash")
         }
@@ -116,21 +117,26 @@ struct AddToLibrarySheet: View {
     
 }
 
-//#Preview("Light") {
-//    AddToLibrarySheet(item: WatchlistItem(from: SearchResult.samples.first!))
-//        .preferredColorScheme(.light)
-//}
-//
-//#Preview("Dark") {
-//    AddToLibrarySheet(item: WatchlistItem(from: SearchResult.samples.first!))
-//        .preferredColorScheme(.dark)
-//}
+#Preview("Light") {
+    VStack {
+        let container = try! ModelContainer(for: WatchlistItem.self,
+                                            configurations: .init(isStoredInMemoryOnly: true))
+        let item = WatchlistItem(from: SearchResult.samples[0])
+        container.mainContext.insert(item)
+        return AddToLibrarySheet(item: item)
+            .modelContainer(container)
+    }
+    .preferredColorScheme(.light)
+}
 
-#Preview {
-    let container = try! ModelContainer(for: WatchlistItem.self,
-                                        configurations: .init(isStoredInMemoryOnly: true))
-    let item = WatchlistItem(from: SearchResult.samples[0])
-    container.mainContext.insert(item)
-    return AddToLibrarySheet(item: item)
-        .modelContainer(container)
+#Preview("Dark") {
+    VStack {
+        let container = try! ModelContainer(for: WatchlistItem.self,
+                                            configurations: .init(isStoredInMemoryOnly: true))
+        let item = WatchlistItem(from: SearchResult.samples[0])
+        container.mainContext.insert(item)
+        return AddToLibrarySheet(item: item)
+            .modelContainer(container)
+    }
+    .preferredColorScheme(.dark)
 }
