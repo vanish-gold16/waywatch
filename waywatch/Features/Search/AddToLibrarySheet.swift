@@ -24,7 +24,10 @@ struct AddToLibrarySheet: View {
                     info
                         .foregroundStyle(P.textSecondary)
                 }
-                status
+                HStack {
+                    remove
+                    if item.addedAt != nil { status }
+                }
             }
             .padding(Waywatch.Space.x3)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
@@ -100,16 +103,34 @@ struct AddToLibrarySheet: View {
         .tint(item.status.color)
     }
     
+    @ViewBuilder
+    private var remove: some View {
+        Button {
+            
+        } label: {
+            Image(systemName: "trash")
+        }
+        .buttonStyle(.glassProminent)
+        .tint(P.statusDropped)
+    }
+    
 }
 
-#Preview("Light") {
-    AddToLibrarySheet(item: WatchlistItem(from: SearchResult.samples.first!))
-    
-        .preferredColorScheme(.light)
-}
+//#Preview("Light") {
+//    AddToLibrarySheet(item: WatchlistItem(from: SearchResult.samples.first!))
+//        .preferredColorScheme(.light)
+//}
+//
+//#Preview("Dark") {
+//    AddToLibrarySheet(item: WatchlistItem(from: SearchResult.samples.first!))
+//        .preferredColorScheme(.dark)
+//}
 
-#Preview("Dark") {
-    AddToLibrarySheet(item: WatchlistItem(from: SearchResult.samples.first!))
-    
-        .preferredColorScheme(.dark)
+#Preview {
+    let container = try! ModelContainer(for: WatchlistItem.self,
+                                        configurations: .init(isStoredInMemoryOnly: true))
+    let item = WatchlistItem(from: SearchResult.samples[0])
+    container.mainContext.insert(item)
+    return AddToLibrarySheet(item: item)
+        .modelContainer(container)
 }
