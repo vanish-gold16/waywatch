@@ -4,6 +4,7 @@
 //
 //  Represents single watchlist item
 //
+import Foundation
 import SwiftData
 
 @Model
