@@ -60,7 +60,7 @@ struct SearchView: View {
                 }
             }
             .sheet(item: $adding) { result in
-                AddToLibrarySheet(result: result)
+                AddToLibrarySheet(item: result)
             }
         }
     }
