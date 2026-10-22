@@ -10,10 +10,11 @@ import SwiftUI
 struct AddToLibrarySheet: View {
     
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     
     private typealias P = Waywatch.Palette
     
-    let result: WatchlistItem
+    let item: WatchlistItem
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -22,6 +23,7 @@ struct AddToLibrarySheet: View {
                 info
                     .foregroundStyle(P.textSecondary)
             }
+            status
         }
         .padding(Waywatch.Space.x3)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -29,7 +31,7 @@ struct AddToLibrarySheet: View {
     
     @ViewBuilder
     private var poster: some View {
-        AsyncImage(url: result.poster) { image in
+        AsyncImage(url: item.poster) { image in
             image
                 .resizable()
                 .scaledToFill()
@@ -49,12 +51,12 @@ struct AddToLibrarySheet: View {
     @ViewBuilder
     private var info: some View {
         VStack(alignment: .leading, spacing: Waywatch.Space.x1) {
-            Text(result.name)
+            Text(item.name)
                 .font(.headline)
                 .lineLimit(1)
                 .foregroundStyle(P.textPrimary)
             metaRow
-            Text(result.overview)
+            Text(item.overview)
                 .font(.footnote)
                 .lineLimit(8)
         }
@@ -64,11 +66,11 @@ struct AddToLibrarySheet: View {
     @ViewBuilder
     private var metaRow: some View {
         HStack {
-            Text(result.type.title)
-            if let year = result.year {
+            Text(item.type.title)
+            if let year = item.year {
                 Text(String(year))
             }
-            if let rating = result.rating {
+            if let rating = item.rating {
                 Label(rating.formatted(.number.precision(.fractionLength(1))), systemImage: "star.fill")
                     .foregroundStyle(P.rating)
             }
@@ -77,18 +79,37 @@ struct AddToLibrarySheet: View {
         .foregroundStyle(P.textSecondary)
     }
     
+    /// button for switching media status
+    @ViewBuilder
+    private var status: some View {
+        Button {
+            
+        } label: {
+            HStack {
+                Text(item.status.title)
+                Image(systemName: item.status.icon)
+                Divider()
+                Image(systemName: "chevron.up.chevron.down")
+                    .font(.caption)
+            }
+            .fixedSize()
+        }
+        .buttonStyle(.glassProminent)
+        .tint(item.status.color)
+    }
+    
 }
 
 #Preview("Light") {
     ScrollView {
-        AddToLibrarySheet(result: WatchlistItem(from: SearchResult.samples.first!))
+        AddToLibrarySheet(item: WatchlistItem(from: SearchResult.samples.first!))
     }
     .preferredColorScheme(.light)
 }
 
 #Preview("Dark") {
     ScrollView {
-        AddToLibrarySheet(result: WatchlistItem(from: SearchResult.samples.first!))
+        AddToLibrarySheet(item: WatchlistItem(from: SearchResult.samples.first!))
     }
     .preferredColorScheme(.dark)
 }
