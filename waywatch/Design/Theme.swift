@@ -47,8 +47,8 @@ enum Waywatch {
 
         /// plan to watch
         static let statusPlanned = Color(light: 0x6E56CF, dark: 0xA08BFF)
-        /// currently watching
-        static let statusWatching = Color(light: 0x1F9D55, dark: 0x3DDC84)
+        /// currently 
+        static let statusProcessing = Color(light: 0x1F9D55, dark: 0x3DDC84)
         /// completed
         static let statusCompleted = Color(light: 0x2F6FDB, dark: 0x5B9BFF)
         /// on hold
@@ -126,7 +126,7 @@ private struct PaletteSwatches: View {
     private let swatches: [(String, Color)] = [
         ("primary", P.primary), ("primarySoft", P.primarySoft),
         ("surface", P.surface), ("surfaceSecondary", P.surfaceSecondary),
-        ("planned", P.statusPlanned), ("watching", P.statusWatching),
+        ("planned", P.statusPlanned), ("watching", P.statusProcessing),
         ("completed", P.statusCompleted), ("onHold", P.statusOnHold),
         ("dropped", P.statusDropped), ("rating", P.rating),
     ]
