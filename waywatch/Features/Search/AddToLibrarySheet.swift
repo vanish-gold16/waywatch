@@ -17,16 +17,18 @@ struct AddToLibrarySheet: View {
     let item: WatchlistItem
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack(alignment: .top, spacing: Waywatch.Space.x3) {
-                poster
-                info
-                    .foregroundStyle(P.textSecondary)
+        NavigationStack {
+            VStack(alignment: .leading) {
+                HStack(alignment: .top, spacing: Waywatch.Space.x3) {
+                    poster
+                    info
+                        .foregroundStyle(P.textSecondary)
+                }
+                status
             }
-            status
+            .padding(Waywatch.Space.x3)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
-        .padding(Waywatch.Space.x3)
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     @ViewBuilder
@@ -101,15 +103,13 @@ struct AddToLibrarySheet: View {
 }
 
 #Preview("Light") {
-    ScrollView {
-        AddToLibrarySheet(item: WatchlistItem(from: SearchResult.samples.first!))
-    }
-    .preferredColorScheme(.light)
+    AddToLibrarySheet(item: WatchlistItem(from: SearchResult.samples.first!))
+    
+        .preferredColorScheme(.light)
 }
 
 #Preview("Dark") {
-    ScrollView {
-        AddToLibrarySheet(item: WatchlistItem(from: SearchResult.samples.first!))
-    }
-    .preferredColorScheme(.dark)
+    AddToLibrarySheet(item: WatchlistItem(from: SearchResult.samples.first!))
+    
+        .preferredColorScheme(.dark)
 }

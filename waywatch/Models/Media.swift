@@ -13,7 +13,7 @@ enum MediaType: Codable {
 
 /// Represents each status of watchlist item can be in
 enum WatchlistStatus: Codable {
-    case planned, processing, completed, onHold, dropped
+    case planned, progress, completed, onHold, dropped
 }
 
 extension WatchlistStatus {
@@ -21,8 +21,8 @@ extension WatchlistStatus {
         switch self {
         case .planned:
             return "Planned"
-        case .processing:
-            return "Processing"
+        case .progress:
+            return "In Progress"
         case .completed:
             return "Completed"
         case .onHold:
@@ -38,7 +38,7 @@ extension WatchlistStatus {
         switch self {
         case .planned:
             return "bookmark"
-        case .processing:
+        case .progress:
             return "play.circle"
         case .completed:
             return "checkmark.circle"
@@ -55,8 +55,8 @@ extension WatchlistStatus {
         switch self {
         case .planned:
             return Waywatch.Palette.statusPlanned
-        case .processing:
-            return Waywatch.Palette.statusProcessing
+        case .progress:
+            return Waywatch.Palette.statusProgress
         case .completed:
             return Waywatch.Palette.statusCompleted
         case .onHold:

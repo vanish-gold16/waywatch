@@ -61,6 +61,8 @@ struct SearchView: View {
             }
             .sheet(item: $adding) { result in
                 AddToLibrarySheet(item: result)
+                    .presentationDragIndicator(.visible)
+                    .presentationDetents([.medium, .large])
             }
         }
     }
