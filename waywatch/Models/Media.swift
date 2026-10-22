@@ -6,14 +6,18 @@
 //
 import SwiftUI
 
-enum MediaType: Codable {
-    case movie
-    case show
+enum MediaType: String, Codable {
+    case movie = "movie"
+    case show = "show"
 }
 
 /// Represents each status of watchlist item can be in
-enum WatchlistStatus: Codable {
-    case planned, progress, completed, onHold, dropped
+enum WatchlistStatus: String, Codable, CaseIterable {
+    case planned = "planned"
+    case progress = "progress"
+    case completed = "completed"
+    case onHold = "onHold"
+    case dropped = "dropped"
 }
 
 extension WatchlistStatus {
