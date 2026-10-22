@@ -13,7 +13,7 @@ struct AddToLibrarySheet: View {
     
     private typealias P = Waywatch.Palette
     
-    let result: SearchResult
+    let result: WatchlistItem
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -54,7 +54,7 @@ struct AddToLibrarySheet: View {
                 .lineLimit(1)
                 .foregroundStyle(P.textPrimary)
             metaRow
-            Text(result.description)
+            Text(result.overview)
                 .font(.footnote)
                 .lineLimit(8)
         }
@@ -81,14 +81,14 @@ struct AddToLibrarySheet: View {
 
 #Preview("Light") {
     ScrollView {
-        AddToLibrarySheet(result: SearchResult.samples.first!)
+        AddToLibrarySheet(result: WatchlistItem(from: SearchResult.samples.first!))
     }
     .preferredColorScheme(.light)
 }
 
 #Preview("Dark") {
     ScrollView {
-        AddToLibrarySheet(result: SearchResult.samples.first!)
+        AddToLibrarySheet(result: WatchlistItem(from: SearchResult.samples.first!))
     }
     .preferredColorScheme(.dark)
 }

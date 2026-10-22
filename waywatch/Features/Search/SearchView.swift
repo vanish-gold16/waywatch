@@ -4,13 +4,19 @@
 //
 //  Represents element of found movies with search bar
 //
+import SwiftData
 import SwiftUI
 
 struct SearchView: View {
+    
+    @Environment(\.modelContext) private var modelContext
+    
+    @Query private var items: [WatchlistItem]
+    
     @State private var query = ""
     @State private var state: SearchState = .idle
     
-    @State private var adding: SearchResult?
+    @State private var adding: WatchlistItem?
     
     var body: some View {
         NavigationStack {
@@ -28,7 +34,7 @@ struct SearchView: View {
                             LazyVStack(spacing: Waywatch.Space.x3) {
                                 ForEach(founds) { found in
                                     SearchResultRow(result: found) {
-                                        adding = found
+                                        findOrAdd(from: found)
                                     }
                                 }
                             }
@@ -56,6 +62,16 @@ struct SearchView: View {
             .sheet(item: $adding) { result in
                 AddToLibrarySheet(result: result)
             }
+        }
+    }
+    
+    private func findOrAdd(from result: SearchResult) {
+        if let existing = items.first(where: { $0.tmdbId == result.tmdbId && $0.type == result.type }) {
+            adding = existing
+        } else {
+            let item = WatchlistItem(from: result)
+            modelContext.insert(item)
+            adding = item
         }
     }
     
