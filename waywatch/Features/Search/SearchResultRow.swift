@@ -12,6 +12,7 @@ struct SearchResultRow: View {
     
     /// called when the user taps the add button
     let onAdd: () -> Void
+    let status: WatchlistStatus?
     
     private typealias P = Waywatch.Palette
     
@@ -89,10 +90,10 @@ struct SearchResultRow: View {
         Button {
             onAdd()
         } label: {
-            Image(systemName: "plus")
+            Image(systemName: status?.icon ?? "plus")
                 .foregroundStyle(P.onPrimary)
         }
-        .tint(P.primary)
+        .tint(status?.color ?? P.primary)
         .buttonStyle(.glassProminent)
     }
     
@@ -102,7 +103,7 @@ struct SearchResultRow: View {
     ScrollView {
         ForEach(SearchResult.samples) { sample in
             VStack(spacing: Waywatch.Space.x3) {
-                SearchResultRow(result: sample, onAdd: {})
+                SearchResultRow(result: sample, onAdd: {}, status: .planned)
             }
         }
     }
@@ -112,7 +113,7 @@ struct SearchResultRow: View {
 #Preview("Dark") {
     ScrollView {
         ForEach(SearchResult.samples) { sample in
-            SearchResultRow(result: sample, onAdd: {})
+            SearchResultRow(result: sample, onAdd: {}, status: .notAdded)
         }
     }
     .preferredColorScheme(.dark)

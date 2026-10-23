@@ -18,6 +18,7 @@ enum WatchlistStatus: String, Codable, CaseIterable {
     case completed = "completed"
     case onHold = "onHold"
     case dropped = "dropped"
+    case notAdded = "notAdded"
 }
 
 extension WatchlistStatus {
@@ -33,6 +34,8 @@ extension WatchlistStatus {
             return "On hold"
         case .dropped:
             return "Dropped"
+        case .notAdded:
+            return "Not added"
         }
     }
 }
@@ -50,6 +53,8 @@ extension WatchlistStatus {
             return "pause.circle"
         case .dropped:
             return "xmark.circle"
+        case .notAdded:
+            return "plus"
         }
     }
 }
@@ -67,6 +72,8 @@ extension WatchlistStatus {
             return Waywatch.Palette.statusOnHold
         case .dropped:
             return Waywatch.Palette.statusDropped
+        case .notAdded:
+            return Waywatch.Palette.primary
         }
     }
 }

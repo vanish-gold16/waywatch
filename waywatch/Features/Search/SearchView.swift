@@ -10,7 +10,6 @@ import SwiftUI
 struct SearchView: View {
     
     @Environment(\.modelContext) private var modelContext
-    
     @Query private var items: [WatchlistItem]
     
     @State private var query = ""
@@ -33,9 +32,7 @@ struct SearchView: View {
                         ScrollView {
                             LazyVStack(spacing: Waywatch.Space.x3) {
                                 ForEach(founds) { found in
-                                    SearchResultRow(result: found) {
-                                        findOrAdd(from: found)
-                                    }
+                                    SearchResultRow(result: found, onAdd: { findOrAdd(from: found) }, status: findStatus(from: found))
                                 }
                             }
                             .padding(.horizontal, Waywatch.Space.x4)
@@ -74,6 +71,14 @@ struct SearchView: View {
             let item = WatchlistItem(from: result)
             modelContext.insert(item)
             adding = item
+        }
+    }
+    
+    private func findStatus(from result: SearchResult) -> WatchlistStatus {
+        if let existing = items.first(where: { $0.tmdbId == result.tmdbId && $0.type == result.type }) {
+            return existing.status
+        } else {
+            return .notAdded
         }
     }
     
