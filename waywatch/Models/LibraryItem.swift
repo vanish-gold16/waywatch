@@ -1,5 +1,5 @@
 //
-//  WatchlistItem.swift
+//  LibraryItem.swift
 //  waywatch
 //
 //  Represents single watchlist item
@@ -8,7 +8,7 @@ import Foundation
 import SwiftData
 
 @Model
-class WatchlistItem {
+class LibraryItem {
     var tmdbId: Int
     var type: MediaType
     var name: String
