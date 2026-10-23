@@ -17,21 +17,19 @@ struct AddToLibrarySheet: View {
     @Bindable var item: WatchlistItem
     
     var body: some View {
-        NavigationStack {
-            VStack(alignment: .leading) {
-                HStack(alignment: .top, spacing: Waywatch.Space.x3) {
-                    poster
-                    info
-                        .foregroundStyle(P.textSecondary)
-                }
-                HStack {
-                    remove
-                    status
-                }
+        VStack(alignment: .leading) {
+            HStack(alignment: .top, spacing: Waywatch.Space.x3) {
+                poster
+                info
+                    .foregroundStyle(P.textSecondary)
             }
-            .padding(Waywatch.Space.x3)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            HStack {
+                remove
+                status
+            }
         }
+        .padding(Waywatch.Space.x3)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     
     @ViewBuilder
@@ -106,6 +104,7 @@ struct AddToLibrarySheet: View {
         }
         .buttonStyle(.glassProminent)
         .tint(item.status.color)
+        .id(item.status)
     }
     
     @ViewBuilder
@@ -124,8 +123,7 @@ struct AddToLibrarySheet: View {
 
 #Preview("Light") {
     VStack {
-        let container = try! ModelContainer(for: WatchlistItem.self,
-                                            configurations: .init(isStoredInMemoryOnly: true))
+        let container = try! ModelContainer(for: WatchlistItem.self, configurations: .init(isStoredInMemoryOnly: true))
         let item = WatchlistItem(from: SearchResult.samples[0])
         container.mainContext.insert(item)
         return AddToLibrarySheet(item: item)
@@ -136,8 +134,7 @@ struct AddToLibrarySheet: View {
 
 #Preview("Dark") {
     VStack {
-        let container = try! ModelContainer(for: WatchlistItem.self,
-                                            configurations: .init(isStoredInMemoryOnly: true))
+        let container = try! ModelContainer(for: WatchlistItem.self, configurations: .init(isStoredInMemoryOnly: true))
         let item = WatchlistItem(from: SearchResult.samples[0])
         container.mainContext.insert(item)
         return AddToLibrarySheet(item: item)
