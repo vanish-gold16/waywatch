@@ -14,7 +14,7 @@ struct AddToLibrarySheet: View {
     
     private typealias P = Waywatch.Palette
     
-    let item: WatchlistItem
+    @Bindable var item: WatchlistItem
     
     var body: some View {
         NavigationStack {
@@ -87,8 +87,13 @@ struct AddToLibrarySheet: View {
     /// button for switching media status
     @ViewBuilder
     private var status: some View {
-        Button {
-            
+        Menu {
+            Picker("Status", selection: $item.status) {
+                ForEach(WatchlistStatus.allCases, id: \.self) { status in
+                    Label(status.title, systemImage: status.icon)
+                        .tag(status)
+                }
+            }
         } label: {
             HStack {
                 Text(item.status.title)

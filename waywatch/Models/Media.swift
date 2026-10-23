@@ -2,7 +2,7 @@
 //  Media.swift
 //  waywatch
 //
-//  Created by Vanya on 14.10.2026.
+//  Unites enums for media
 //
 import SwiftUI
 
