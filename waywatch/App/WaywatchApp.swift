@@ -1,10 +1,10 @@
 import SwiftUI
 import SwiftData
 
-@main struct MyApp: App {
+@main struct WaywatchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
                 .tint(Waywatch.Palette.primary)
         }
         .modelContainer(for: WatchlistItem.self)
