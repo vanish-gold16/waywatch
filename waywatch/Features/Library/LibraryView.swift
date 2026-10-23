@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LibraryView: View {
     
-    @Query(sort: \WatchlistItem.addedAt, order: .reverse) private var items: [WatchlistItem]
+    @Query(sort: \LibraryItem.addedAt, order: .reverse) private var items: [LibraryItem]
     
     var body: some View {
         

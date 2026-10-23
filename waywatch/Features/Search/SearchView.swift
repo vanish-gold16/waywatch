@@ -10,12 +10,12 @@ import SwiftUI
 struct SearchView: View {
     
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [WatchlistItem]
+    @Query private var items: [LibraryItem]
     
     @State private var query = ""
     @State private var state: SearchState = .idle
     
-    @State private var adding: WatchlistItem?
+    @State private var adding: LibraryItem?
     
     var body: some View {
         NavigationStack {
@@ -68,13 +68,13 @@ struct SearchView: View {
         if let existing = items.first(where: { $0.tmdbId == result.tmdbId && $0.type == result.type }) {
             adding = existing
         } else {
-            let item = WatchlistItem(from: result)
+            let item = LibraryItem(from: result)
             modelContext.insert(item)
             adding = item
         }
     }
     
-    private func findStatus(from result: SearchResult) -> WatchlistStatus {
+    private func findStatus(from result: SearchResult) -> LibraryStatus {
         if let existing = items.first(where: { $0.tmdbId == result.tmdbId && $0.type == result.type }) {
             return existing.status
         } else {

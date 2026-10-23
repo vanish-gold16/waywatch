@@ -7,6 +7,6 @@ import SwiftData
             RootView()
                 .tint(Waywatch.Palette.primary)
         }
-        .modelContainer(for: WatchlistItem.self)
+        .modelContainer(for: LibraryItem.self)
     }
 }

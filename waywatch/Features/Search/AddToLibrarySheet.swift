@@ -14,7 +14,7 @@ struct AddToLibrarySheet: View {
     
     private typealias P = Waywatch.Palette
     
-    @Bindable var item: WatchlistItem
+    @Bindable var item: LibraryItem
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -87,7 +87,7 @@ struct AddToLibrarySheet: View {
     private var status: some View {
         Menu {
             Picker("Status", selection: $item.status) {
-                ForEach(WatchlistStatus.allCases, id: \.self) { status in
+                ForEach(LibraryStatus.allCases, id: \.self) { status in
                     Label(status.title, systemImage: status.icon)
                         .tag(status)
                 }
@@ -123,8 +123,8 @@ struct AddToLibrarySheet: View {
 
 #Preview("Light") {
     VStack {
-        let container = try! ModelContainer(for: WatchlistItem.self, configurations: .init(isStoredInMemoryOnly: true))
-        let item = WatchlistItem(from: SearchResult.samples[0])
+        let container = try! ModelContainer(for: LibraryItem.self, configurations: .init(isStoredInMemoryOnly: true))
+        let item = LibraryItem(from: SearchResult.samples[0])
         container.mainContext.insert(item)
         return AddToLibrarySheet(item: item)
             .modelContainer(container)
@@ -134,8 +134,8 @@ struct AddToLibrarySheet: View {
 
 #Preview("Dark") {
     VStack {
-        let container = try! ModelContainer(for: WatchlistItem.self, configurations: .init(isStoredInMemoryOnly: true))
-        let item = WatchlistItem(from: SearchResult.samples[0])
+        let container = try! ModelContainer(for: LibraryItem.self, configurations: .init(isStoredInMemoryOnly: true))
+        let item = LibraryItem(from: SearchResult.samples[0])
         container.mainContext.insert(item)
         return AddToLibrarySheet(item: item)
             .modelContainer(container)

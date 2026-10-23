@@ -12,7 +12,7 @@ struct SearchResultRow: View {
     
     /// called when the user taps the add button
     let onAdd: () -> Void
-    let status: WatchlistStatus?
+    let status: LibraryStatus?
     
     private typealias P = Waywatch.Palette
     

@@ -12,7 +12,7 @@ enum MediaType: String, Codable {
 }
 
 /// Represents each status of watchlist item can be in
-enum WatchlistStatus: String, Codable, CaseIterable {
+enum LibraryStatus: String, Codable, CaseIterable {
     case planned = "planned"
     case progress = "progress"
     case completed = "completed"
@@ -21,7 +21,7 @@ enum WatchlistStatus: String, Codable, CaseIterable {
     case notAdded = "notAdded"
 }
 
-extension WatchlistStatus {
+extension LibraryStatus {
     var title: String {
         switch self {
         case .planned:
@@ -40,7 +40,7 @@ extension WatchlistStatus {
     }
 }
 
-extension WatchlistStatus {
+extension LibraryStatus {
     var icon: String {
         switch self {
         case .planned:
@@ -59,7 +59,7 @@ extension WatchlistStatus {
     }
 }
 
-extension WatchlistStatus {
+extension LibraryStatus {
     var color: Color {
         switch self {
         case .planned:
