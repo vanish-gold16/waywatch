@@ -18,7 +18,7 @@ class LibraryItem {
     var year: Int?
     var addedAt: Date
     
-    var status: WatchlistStatus
+    var status: LibraryStatus
     
     init(from result: SearchResult) {
         self.tmdbId = result.tmdbId
@@ -30,5 +30,11 @@ class LibraryItem {
         self.year = result.year
         self.addedAt = .now
         self.status = .planned
+    }
+}
+
+extension LibraryItem {
+    static let samples = SearchResult.samples.map { sample in
+        LibraryItem(from: sample)
     }
 }
