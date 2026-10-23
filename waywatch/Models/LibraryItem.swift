@@ -14,6 +14,9 @@ class LibraryItem {
     var name: String
     var overview: String
     var rating: Double?
+    
+    /// user's given rating to  media
+    var ratingGiven: Int?
     var poster: URL?
     var year: Int?
     var addedAt: Date
