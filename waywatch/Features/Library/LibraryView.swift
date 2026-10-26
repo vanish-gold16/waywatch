@@ -35,6 +35,8 @@ struct LibraryView: View {
         }
         .sheet(item: $onFull) { item in
             LibraryItemSheet(item: item)
+                .presentationDragIndicator(.visible)
+                .presentationDetents([.medium, .large])
         }
     }
     
