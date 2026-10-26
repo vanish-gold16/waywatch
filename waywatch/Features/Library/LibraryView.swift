@@ -11,8 +11,23 @@ struct LibraryView: View {
     
     @Query(sort: \LibraryItem.addedAt, order: .reverse) private var items: [LibraryItem]
     
+    let columns = [
+        GridItem(.flexible(), spacing: 12),
+        GridItem(.flexible(), spacing: 12)
+    ]
+    
     var body: some View {
+        if items.isEmpty {
+            ContentUnavailableView("Your library is empty", image: "magnifyingglass", description: Text("Try searching media"))
+        }
         
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(items) { item in
+                    LibraryItemRow(item: item)
+                }
+            }
+        }
     }
     
 }

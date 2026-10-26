@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct LibraryItemView: View {
+struct LibraryItemRow: View {
     
     private typealias P = Waywatch.Palette
     
@@ -55,30 +55,44 @@ struct LibraryItemView: View {
 }
 
 #Preview("Light") {
+    let columns = [
+        GridItem(.flexible(), spacing: 12),
+        GridItem(.flexible(), spacing: 12)
+    ]
+    
     var ratedItem: LibraryItem = {
         let item = LibraryItem(from: SearchResult(tmdbId: 67, type: .movie, name: "Rated Item", poster: nil, description: "Just rated item sample", year: 2026, rating: 6.7, tmdbGenre: [1, 2, 3]))
         item.ratingGiven = 10
         return item
     } ()
-    VStack {
-        LibraryItemView(item: ratedItem)
-        ForEach (LibraryItem.samples) { sample in
-            LibraryItemView(item: sample)
+    ScrollView {
+        LazyVGrid(columns: columns) {
+            LibraryItemRow(item: ratedItem)
+            ForEach (LibraryItem.samples) { sample in
+                LibraryItemRow(item: sample)
+            }
         }
     }
     .preferredColorScheme(.light)
 }
 
 #Preview("Dark") {
+    let columns = [
+        GridItem(.flexible(), spacing: 12),
+        GridItem(.flexible(), spacing: 12)
+    ]
+    
     var ratedItem: LibraryItem = {
         let item = LibraryItem(from: SearchResult(tmdbId: 67, type: .movie, name: "Rated Item", poster: nil, description: "Just rated item sample", year: 2026, rating: 6.7, tmdbGenre: [1, 2, 3]))
         item.ratingGiven = 10
         return item
     }()
-    VStack {
-        LibraryItemView(item: ratedItem)
-        ForEach (LibraryItem.samples) { sample in
-            LibraryItemView(item: sample)
+    ScrollView {
+        LazyVGrid(columns: columns) {
+            LibraryItemRow(item: ratedItem)
+            ForEach (LibraryItem.samples) { sample in
+                LibraryItemRow(item: sample)
+            }
         }
     }
     .preferredColorScheme(.dark)
