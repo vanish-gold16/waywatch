@@ -13,12 +13,10 @@ struct LibraryItemRow: View {
     var item: LibraryItem
     
     var body: some View {
-        VStack {
-            Components.composeLibraryPoster(item)
-                .overlay(alignment: .topTrailing) {
-                    ratingGiven
-                }
-        }
+        Components.composeLibraryPoster(item)
+            .overlay(alignment: .topTrailing) {
+                ratingGiven
+            }
     }
     
     @ViewBuilder

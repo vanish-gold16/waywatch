@@ -21,7 +21,7 @@ struct LibraryItemSheet: View {
             }
         }
         .padding(Waywatch.Space.x3)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     
 }
