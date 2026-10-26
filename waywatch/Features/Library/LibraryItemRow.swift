@@ -32,7 +32,6 @@ struct LibraryItemRow: View {
                 .background(.ultraThinMaterial, in: .capsule) // или .black.opacity(0.7)
         }
     }
-    
 }
 
 #Preview("Light") {
