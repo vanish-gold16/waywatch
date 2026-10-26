@@ -34,8 +34,7 @@ struct LibraryView: View {
             }
         }
         .sheet(item: $onFull) { item in
-            // Placeholder detail content until a dedicated detail view exists
-            Text(item.name)
+            LibraryItemSheet(item: item)
         }
     }
     
