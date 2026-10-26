@@ -13,29 +13,10 @@ struct LibraryItemRow: View {
     var item: LibraryItem
     
     var body: some View {
-        poster
+        Components.composeLibraryPoster(item)
             .overlay(alignment: .topTrailing) {
                 ratingGiven
             }
-    }
-    
-    /// poster eleemnt as an AsyncImage or plain image
-    @ViewBuilder
-    private var poster: some View {
-        AsyncImage(url: item.poster) { image in
-            image
-                .resizable()
-                .scaledToFill()
-                .clipped()
-        } placeholder: {
-            RoundedRectangle(cornerRadius: Waywatch.Radius.md)
-                .fill(P.surfaceSecondary)
-                .overlay {
-                    Image(systemName: "questionmark")
-                }
-        }
-        .frame(width: 144, height: 216)
-        .clipShape(.rect(cornerRadius: Waywatch.Radius.sm))
     }
     
     @ViewBuilder

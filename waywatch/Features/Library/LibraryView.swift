@@ -16,6 +16,8 @@ struct LibraryView: View {
         GridItem(.flexible(), spacing: 12)
     ]
     
+    @State private var onFull: LibraryItem?
+    
     var body: some View {
         if items.isEmpty {
             ContentUnavailableView("Your library is empty", image: "magnifyingglass", description: Text("Try searching media"))
@@ -25,8 +27,15 @@ struct LibraryView: View {
             LazyVGrid(columns: columns) {
                 ForEach(items) { item in
                     LibraryItemRow(item: item)
+                        .onTapGesture {
+                            onFull = item
+                        }
                 }
             }
+        }
+        .sheet(item: $onFull) { item in
+            // Placeholder detail content until a dedicated detail view exists
+            Text(item.name)
         }
     }
     
