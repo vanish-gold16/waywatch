@@ -2,7 +2,7 @@
 //  TicketShape.swift
 //  waywatch
 //
-//  Created by Vanya on 26.10.2026.
+//
 //
 import SwiftUI
 
@@ -35,9 +35,28 @@ struct TicketShape: Shape {
     }
 }
 
+struct TicketPerforation: Shape {
+    var perforation: CGFloat = 0.72
+    var notchRadius: CGFloat = 10
+    
+    func path(in rect: CGRect) -> Path {
+        let x = rect.minX + rect.width * perforation
+        
+        var path = Path()
+        path.move(to: CGPoint(x: x, y: rect.minY + notchRadius))
+        path.addLine(to: CGPoint(x: x, y: rect.maxY - notchRadius))
+        return path
+    }
+}
+
 #Preview("Light") {
         TicketShape()
             .fill(Waywatch.Palette.primarySoft)
+            .overlay {
+                TicketPerforation()
+                    .stroke(Waywatch.Palette.primary, style: StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
+            }
+            .background(Waywatch.Palette.background)
             .frame(width: 340, height: 120)
             .padding()
             .preferredColorScheme(.light)
@@ -46,6 +65,11 @@ struct TicketShape: Shape {
 #Preview("Dark") {
         TicketShape()
             .fill(Waywatch.Palette.primarySoft)
+            .overlay {
+                TicketPerforation()
+                    .stroke(Waywatch.Palette.primary, style: StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
+            }
+            .background(Waywatch.Palette.background)
             .frame(width: 340, height: 120)
             .padding()
             .preferredColorScheme(.dark)
